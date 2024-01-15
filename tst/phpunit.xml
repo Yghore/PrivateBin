@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0"? stopOnError="false" stopOnFailure="false" convertErrorsToExceptions="true">
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="Bootstrap.php" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
   <coverage>
     <include>
