@@ -13,4 +13,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Test unit
-      run: docker run --rm --read-only -v $GITHUB_WORKSPACE:/srv:ro --tmpfs /tmp privatebin/unit-testing && echo $?
+      run: docker run --rm --read-only -v $GITHUB_WORKSPACE:/srv:ro --tmpfs /tmp privatebin/unit-testing /usr/local/vendor/bin/phpunit --no-coverage --colors=always "$@" --fail-on-incomplete && echo $?
