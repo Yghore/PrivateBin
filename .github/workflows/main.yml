@@ -1,0 +1,16 @@
+name: Test unit YGHORE
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test unit
+      run: docker run --rm --read-only -v $GITHUB_WORKFLOW:/srv:ro --tmpfs /tmp privatebin/unit-testing
