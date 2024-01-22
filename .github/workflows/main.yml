@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Test unit
-      run: docker run --rm --read-only -v $GITHUB_WORKSPACE:/srv:ro --tmpfs /tmp privatebin/unit-testing && echo $?
+      run: chmod +x $GITHUB_WORKSPACE/tst/unit-test.sh && docker run --rm --read-only -v $GITHUB_WORKSPACE:/srv:ro -v $GITHUB_WORKSPACE/tst/unit-test.sh:/usr/local/bin/ --tmpfs /tmp privatebin/unit-testing && echo $?
 
       
     - name: Code Coverage Summary
