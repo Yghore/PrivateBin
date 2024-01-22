@@ -15,7 +15,8 @@ jobs:
     - name: Test unit
       run: chmod +x $GITHUB_WORKSPACE/tst/unit-test.sh && docker run --rm --read-only -v $GITHUB_WORKSPACE/tst/coverage:/coverage/ -v $GITHUB_WORKSPACE:/srv:ro -v $GITHUB_WORKSPACE/tst/unit-test.sh:/usr/local/bin/unit-test.sh --tmpfs /tmp privatebin/unit-testing && echo $?
 
-    
+    - name: test LS 1
+      run: ls $GITHUB_WORKSPACE/tst/coverage
       
     - name: Code Coverage Summary
       uses: irongut/CodeCoverageSummary@v1.3.0
