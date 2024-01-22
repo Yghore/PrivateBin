@@ -18,7 +18,7 @@ cd /tmp/repo/js
 
 # run phpunit (in foreground)
 cd /tmp/repo/tst
-[ "$COMMAND" = phpunit -o -z "$COMMAND" ] && /usr/local/vendor/bin/phpunit --no-coverage --colors=always "$@"
+[ "$COMMAND" = phpunit -o -z "$COMMAND" ] && /usr/local/vendor/bin/phpunit --colors=always "$@"
 
 # present mocha results, when done
 [ -z "$COMMAND" ] && wait && cat /tmp/mocha.out
