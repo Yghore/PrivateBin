@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Install suggest
-      run: composer suggest | composer require {}
+      run: composer suggests | xargs -i composer require {}
     
     - name: Install composer
       run: composer install 
