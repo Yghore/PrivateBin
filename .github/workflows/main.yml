@@ -12,9 +12,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Test unit
-      run: docker run --rm --read-only -v $GITHUB_WORKSPACE:/srv:ro --tmpfs /tmp privatebin/unit-testing && echo $?
-      
+    - name: Install suggest
+      run: composer suggest | composer require {}
+    
+    - name: Install composer
+      run: composer install 
+
+    - name: Run unit
+      run: cd /tst && phpunit
+    
     - name: Code Coverage Summary
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
