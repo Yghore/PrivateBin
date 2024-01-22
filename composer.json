@@ -30,7 +30,7 @@
 		"jdenticon/jdenticon": "1.0.2"
 	},
 	"suggest" : {
-		"google/cloud-storage" : "^1",
+		"google/cloud-storage" : "1.43.0",
 		"aws/aws-sdk-php" : "3.275.1"
 	},
 	"require-dev" : {
