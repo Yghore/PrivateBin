@@ -13,13 +13,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Install suggest
-      run: php --version && (composer suggests --list | xargs -i composer require {})
+      run: composer require phpunit/phpunit:^9 google/cloud-storage:1.32.0
     
-    - name: Install composer
-      run: composer install 
 
     - name: Run unit
-      run: cd /tst && phpunit
+      run: cd /tst && phpunit --no-coverage --colors=always "$@"
     
     - name: Code Coverage Summary
       uses: irongut/CodeCoverageSummary@v1.3.0
