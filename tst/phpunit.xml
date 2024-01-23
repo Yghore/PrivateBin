@@ -8,8 +8,7 @@
       <file>../lib/Data/AbstractData.php</file>
     </exclude>
     <report>
-      <cobertura outputFile="/coverage/coverage.cobertura.xml"/>
-      <html outputDirectory="phpunit-html"/>
+      <cobertura outputFile="./coverage/coverage.cobertura.xml"/>
       <text outputFile="php://stdout"/>
     </report>
   </coverage>
