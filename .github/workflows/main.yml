@@ -9,17 +9,29 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        php-versions: ['8.2']
+    name: PHP ${{ matrix.php-versions }} unit tests on ${{ matrix.operating-system }}
+    env:
+      extensions: gd, sqlite3
+      extensions-cache-key-name: phpextensions
+      
     steps:
     - uses: actions/checkout@v3
-    - name: Test unit
-      run: chmod +x $GITHUB_WORKSPACE/tst/unit-test.sh && docker run --rm --read-only -v $GITHUB_WORKSPACE/tst/coverage:/coverage/ -v $GITHUB_WORKSPACE:/srv:ro -v $GITHUB_WORKSPACE/tst/unit-test.sh:/usr/local/bin/unit-test.sh --tmpfs /tmp privatebin/unit-testing && echo $?
+    - name: Install composer
+      run: composer install --prefer-dist --no-dev
 
-    - name: echo github_WORKSPACE
-      run: echo $GITHUB_WORKSPACE
+    - name: Setup PHPunit
+      run: composer install -n
 
-    - name: test LS 1
-      run: ls ${GITHUB_WORKSPACE}/tst/coverage
+    - name: Install Google Cloud Storage
+      run: composer require google/cloud-storage
+
+    # testing
+    - name: Run unit tests
+      run: ../vendor/bin/phpunit
+      working-directory: tst
       
     - name: Code Coverage Summary
       uses: irongut/CodeCoverageSummary@v1.3.0
