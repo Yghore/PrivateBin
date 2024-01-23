@@ -37,7 +37,7 @@ class ConfigurationTest extends TestCase
     public function testDefaultConfigFile()
     {
         $conf = new Configuration;
-        $this->assertEquals($this->_options, "fichier_yghore.yml", 'default configuration is correct');
+        $this->assertEquals($this->_options, $conf->get(), 'default configuration is correct');
     }
 
     public function testHandleFreshConfigFile()
