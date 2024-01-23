@@ -30,7 +30,7 @@ jobs:
 
     # testing
     - name: Run unit tests
-      run: ../vendor/bin/phpunit
+      run: XDEBUG_MODE=coverage ../vendor/bin/phpunit --coverage
       working-directory: tst
       
     - name: Code Coverage Summary
