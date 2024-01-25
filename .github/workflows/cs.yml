@@ -26,4 +26,4 @@ jobs:
       run: composer require --dev "squizlabs/php_codesniffer=*"
 
     - name: Run CS TEST
-      run: `./vendor/bin/phpcs ./**/*.php --generator=Markdown` >> $GITHUB_STEP_SUMMARY
+      run: "`./vendor/bin/phpcs ./**/*.php --generator=Markdown` >> $GITHUB_STEP_SUMMARY"
