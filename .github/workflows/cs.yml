@@ -1,0 +1,29 @@
+name: CS YGHORE
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['8.2']
+    name: PHP ${{ matrix.php-versions }} cs on ${{ matrix.operating-system }}
+    env:
+      extensions: gd, sqlite3
+      extensions-cache-key-name: phpextensions
+      
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install composer
+      run: composer install --prefer-dist --no-dev
+
+    - name: Setup PHP CS
+      run: composer require --dev "squizlabs/php_codesniffer=*"
+
+    - name: Run CS TEST
+      run: `./vendor/bin/phpcs ./**/*.php --generator=Markdown` >> $GITHUB_STEP_SUMMARY
