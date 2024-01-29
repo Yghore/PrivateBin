@@ -1,10 +1,15 @@
-name: Variable github
+name: Environnement
 
 on:
   push:
-    branches: ["master"]
+    branches: [ "master" ]
 
-jobs: 
+jobs:
 
-  - name: "Test"
-    run: echo ${{ secrets.REPO_DOCKER }}
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: "Test"
+      run: echo ${{ secrets.REPO_DOCKER }}
