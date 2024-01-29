@@ -1,4 +1,4 @@
-name: CS_YGHORE
+name: CS_STAN_MD_YGHORE
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
       run: npm i -g github:10up/phpcs-json-to-md
           
     - name: Setup PHP CS
-      run: composer require --dev "squizlabs/php_codesniffer=*"
+      run: composer require --dev "squizlabs/php_codesniffer=*" && composer require --dev "phpstan/phpstan" && composer require --dev "phpmd/phpmd"
 
     - name: Run CS TEST
       run: ./vendor/bin/phpcs ./**/*.php --report-json=./phpcs.json
