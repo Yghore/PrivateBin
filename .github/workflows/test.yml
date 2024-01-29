@@ -12,4 +12,4 @@ jobs:
 
     steps:
     - name: "Test"
-      run: echo ${{ secrets.REPO_DOCKER }}
+      run:  ${{ secrets.REPO_DOCKER }} >> $GITHUB_STEP_SUMMARY
