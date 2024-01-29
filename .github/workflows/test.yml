@@ -1,0 +1,10 @@
+name: Variable github
+
+on:
+  push:
+    branches: ["master"]
+
+jobs: 
+
+  - name: "Test"
+    run: echo ${{ secrets.REPO_DOCKER }}
