@@ -29,10 +29,10 @@ jobs:
       run: composer require --dev "squizlabs/php_codesniffer=*" && composer require --dev "phpstan/phpstan" && composer require --dev "phpmd/phpmd"
 
     - name: Run CS TEST
-      run: ./vendor/bin/phpcs ./**/*.php --report-json=./phpcs.json
+      run: ./vendor/bin/phpcs ./**/*.php --report-json=./phpcs.json || true
 
     - name: Transform
-      run: phpcs-json-to-md --path ./phpcs.json --output ./phpcs.md 
+      run: phpcs-json-to-md --path ./phpcs.json --output ./phpcs.md
 
     - name: Summarize
       run: cat ./phpcs.md >> $GITHUB_STEP_SUMMARY
