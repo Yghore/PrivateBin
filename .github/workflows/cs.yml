@@ -22,8 +22,17 @@ jobs:
     - name: Install composer
       run: composer install --prefer-dist --no-dev
 
+    - name: Setup JSON TO MARKDOWN
+      run: npm i -g github:10up/phpcs-json-to-md
+          
     - name: Setup PHP CS
       run: composer require --dev "squizlabs/php_codesniffer=*"
 
     - name: Run CS TEST
-      run: ./vendor/bin/phpcs ./**/*.php --generator=Markdown >> $GITHUB_STEP_SUMMARY
+      run: ./vendor/bin/phpcs ./**/*.php --report-json=./phpcs.json
+
+    - name: Transform
+      run: phpcs-json-to-md --path ./phpcs.json --output ./phpcs.md 
+
+    - name: Summarize
+      run: cat ./phpcs.md >> $GITHUB_STEP_SUMMARY

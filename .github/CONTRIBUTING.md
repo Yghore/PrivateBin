@@ -6,3 +6,8 @@ Have a look at our [contributing guide](https://github.com/PrivateBin/PrivateBin
 If you want to translate PrivateBin into your language have a look at the [translation guide](https://github.com/PrivateBin/PrivateBin/wiki/Translation).
 
 Except this also opening [issues](https://github.com/PrivateBin/PrivateBin/issues) helps much. Just describe your problem detailed enough and fill out our template.
+
+
+PHP{CS,STAN,MD}
+
+Dockerfile, Images
