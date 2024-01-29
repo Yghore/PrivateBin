@@ -1,4 +1,4 @@
-name: CS_YGHORE
+name: CS_STAN_MD_YGHORE
 
 on:
   push:
@@ -23,7 +23,12 @@ jobs:
       run: composer install --prefer-dist --no-dev
 
     - name: Setup PHP CS
-      run: composer require --dev "squizlabs/php_codesniffer=*"
+      run: composer require --dev "squizlabs/php_codesniffer=*" && composer require --dev "phpstan/phpstan" && composer require --dev "phpmd/phpmd"
 
     - name: Run CS TEST
       run: ./vendor/bin/phpcs ./**/*.php --generator=Markdown >> $GITHUB_STEP_SUMMARY
+
+    - name: Run Stan TEST
+      run: ./vendor/bin/phpstan analyse . tst
+
+
