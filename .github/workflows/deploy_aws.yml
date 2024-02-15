@@ -1,0 +1,27 @@
+name: Deploy to AWS Beanstalk
+
+on:
+  push:
+    branches:
+      - master  # Change this to your main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Zipped
+      run: zip deploy.zip Dockerfile
+
+    - name: Deploy
+      uses: einaregilsson/beanstalk-deploy@v21
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: PrivateBinProdYgh
+        environment_name: PrivateBinYghoreCLI
+        region: eu-west-3
+        deployment_package: deploy.zip
