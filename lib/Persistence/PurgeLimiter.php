@@ -1,13 +1,13 @@
 <?php
-/**
- * PrivateBin
+
+/*
+ * This file is part of PHP CS Fixer.
  *
- * a zero-knowledge paste bin
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
  *
- * @link      https://github.com/PrivateBin/PrivateBin
- * @copyright 2012 Sébastien SAUVAGE (sebsauvage.net)
- * @license   https://www.opensource.org/licenses/zlib-license.php The zlib/libpng License
- * @version   1.6.2
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace PrivateBin\Persistence;
@@ -15,27 +15,27 @@ namespace PrivateBin\Persistence;
 use PrivateBin\Configuration;
 
 /**
- * PurgeLimiter
+ * PurgeLimiter.
  *
  * Handles purge limiting, so purging is not triggered too frequently.
  */
 class PurgeLimiter extends AbstractPersistence
 {
     /**
-     * time limit in seconds, defaults to 300s
+     * time limit in seconds, defaults to 300s.
      *
-     * @access private
      * @static
-     * @var    int
+     *
+     * @var int
      */
     private static $_limit = 300;
 
     /**
-     * set the time limit in seconds
+     * set the time limit in seconds.
      *
-     * @access public
      * @static
-     * @param  int $limit
+     *
+     * @param int $limit
      */
     public static function setLimit($limit)
     {
@@ -43,11 +43,9 @@ class PurgeLimiter extends AbstractPersistence
     }
 
     /**
-     * set configuration options of the traffic limiter
+     * set configuration options of the traffic limiter.
      *
-     * @access public
      * @static
-     * @param Configuration $conf
      */
     public static function setConfiguration(Configuration $conf)
     {
@@ -55,10 +53,10 @@ class PurgeLimiter extends AbstractPersistence
     }
 
     /**
-     * check if the purge can be performed
+     * check if the purge can be performed.
      *
-     * @access public
      * @static
+     *
      * @return bool
      */
     public static function canPurge()
@@ -68,8 +66,8 @@ class PurgeLimiter extends AbstractPersistence
             return true;
         }
 
-        $now  = time();
-        $pl   = (int) self::$_store->getValue('purge_limiter');
+        $now = time();
+        $pl = (int) self::$_store->getValue('purge_limiter');
         if ($pl + self::$_limit >= $now) {
             return false;
         }
@@ -77,6 +75,7 @@ class PurgeLimiter extends AbstractPersistence
         if (!$hasStored) {
             error_log('failed to store the purge limiter, skipping purge cycle to avoid getting stuck in a purge loop');
         }
+
         return $hasStored;
     }
 }
